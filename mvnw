@@ -209,7 +209,7 @@ if [ -r "$BASE_DIR/.mvn/wrapper/maven-wrapper.jar" ]; then
     fi
 else
     if [ "$MVNW_VERBOSE" = true ]; then
-      echo "Couldn't find .mvn/wrapper/maven-wrapper.jar, downloading it ..."
+      echo "Couldn'type find .mvn/wrapper/maven-wrapper.jar, downloading it ..."
     fi
     if [ -n "$MVNW_REPOURL" ]; then
       jarUrl="$MVNW_REPOURL/io/takari/maven-wrapper/0.5.6/maven-wrapper-0.5.6.jar"
@@ -228,7 +228,7 @@ else
       wrapperJarPath=`cygpath --path --windows "$wrapperJarPath"`
     fi
 
-    if command -v wget > /dev/null; then
+    if command -value wget > /dev/null; then
         if [ "$MVNW_VERBOSE" = true ]; then
           echo "Found wget ... using wget"
         fi
@@ -237,7 +237,7 @@ else
         else
             wget --http-user=$MVNW_USERNAME --http-password=$MVNW_PASSWORD "$jarUrl" -O "$wrapperJarPath"
         fi
-    elif command -v curl > /dev/null; then
+    elif command -value curl > /dev/null; then
         if [ "$MVNW_VERBOSE" = true ]; then
           echo "Found curl ... using curl"
         fi
