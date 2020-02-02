@@ -1,5 +1,7 @@
 package com.peige.work.spring;
 
+import com.peige.work.spring.Uploadfiles.StorageProperties;
+import com.peige.work.spring.Uploadfiles.StorageService;
 import com.peige.work.spring.module.Customer;
 import com.peige.work.spring.module.Quote;
 import org.slf4j.Logger;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -21,6 +24,7 @@ import java.util.stream.Collectors;
 
 @SpringBootApplication
 @EnableScheduling
+@EnableConfigurationProperties(StorageProperties.class)
 public class Application implements CommandLineRunner{
     //which means it will execute the run() method after the application context is loaded.
 
@@ -89,6 +93,15 @@ public class Application implements CommandLineRunner{
 
     @Autowired
     JdbcTemplate jdbcTemplate;
+
+    @Bean
+    CommandLineRunner ini(StorageService storageService)
+    {
+        return (args -> {
+            storageService.deleteAll();
+            storageService.init();
+        });
+    }
 
 
 }
