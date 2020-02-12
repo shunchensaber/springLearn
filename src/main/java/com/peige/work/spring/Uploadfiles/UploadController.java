@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
@@ -33,8 +34,11 @@ public class UploadController {
         model.addAttribute("files", storageService.loadAll().map(
                 path -> MvcUriComponentsBuilder.fromMethodName(UploadController.class,
                         "serveFile", path.getFileName().toString()).build().toString())
-                .collect(Collectors.toList()));
-
+                .collect(Collectors.toList()));//构造url的工具
+        List<String>  list=  storageService.loadAll().map(path -> {
+            return path.getFileName().toString();
+        }).collect(Collectors.toList()) ;
+        logger.info(list.toString());
         return "upload/uploadForm";
     }
 
