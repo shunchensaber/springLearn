@@ -4,3 +4,8 @@ spring:
     password: _tOBHuDry7-v
     url: jdbc:mysql://127.0.0.1:3306/taobaoprize?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     class: com.mysql.cj.jdbc.Driver
+
+
+redis:
+  host:127.0.0.1
+  port:6379
