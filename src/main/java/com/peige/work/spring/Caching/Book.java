@@ -1,6 +1,8 @@
 package com.peige.work.spring.Caching;
 
-public class Book {
+import java.io.Serializable;
+
+public class Book implements Serializable {
 
     private String isbn;
     private String title;

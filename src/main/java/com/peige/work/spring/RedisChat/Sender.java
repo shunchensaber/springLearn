@@ -63,7 +63,6 @@ public class Sender implements CommandLineRunner {
             Thread.sleep(1000);
 
         }
-        
-        System.exit(0);
+
     }
 }

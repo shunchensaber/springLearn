@@ -6,10 +6,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class SimpleBookRepository implements BookRepository {
     @Override
-    @Cacheable("books")
+    @Cacheable("book")
     public Book getbyisbn(String a) {
+        int i =0;
         waitforaminute();
-        return new Book(a,"1");
+        System.out.println("__________");
+        return new Book(a,"2"+i++);
 
 
     }
