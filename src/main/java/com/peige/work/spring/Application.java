@@ -13,11 +13,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,12 +30,16 @@ import java.util.stream.Collectors;
 @EnableScheduling
 @EnableConfigurationProperties(StorageProperties.class)
 @EnableCaching
+@ImportResource("/integration/integration.xml")
 public class Application implements CommandLineRunner{
     //which means it will execute the run() method after the application context is loaded.
 
    Logger logger = LoggerFactory.getLogger(Application.class);
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+    public static void main(String[] args) throws IOException {
+        ConfigurableApplicationContext ctx =   SpringApplication.run(Application.class, args);
+        System.in.read();
+        ctx.close();
+
     }
 
 
